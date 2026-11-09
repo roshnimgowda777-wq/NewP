@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0d0a0f" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Celestial Love Journey</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json?v=4.0" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon.svg" />
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./css/celestial.css?v=4.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface":                   "#0d0a0f",
+            "surface-dim":               "#100d12",
+            "surface-bright":            "#2c2830",
+            "surface-container-lowest":  "#0a080c",
+            "surface-container-low":     "#141118",
+            "surface-container":         "#1a1720",
+            "surface-container-high":    "#231f2a",
+            "surface-container-highest": "#2e2a36",
+            "surface-variant":           "#2e2a36",
+            "on-surface":                "#ece5f0",
+            "on-surface-variant":        "#c0bfcc",
+            "outline":                   "#7a7a8a",
+            "outline-variant":           "#3a3844",
+            "surface-tint":              "#c4d0ff",
+            "primary":                   "#c4d0ff",
+            "on-primary":                "#17224a",
+            "primary-container":         "#5c6ea0",
+            "on-primary-container":      "#ffffff",
+            "inverse-primary":           "#4a5c88",
+            "secondary":                 "#e0cece",
+            "on-secondary":              "#3c2d2e",
+            "secondary-container":       "#574546",
+            "on-secondary-container":    "#cebfbf",
+            "tertiary":                  "#c4d0fc",
+            "on-tertiary":               "#17224a",
+            "tertiary-container":        "#5c6ea0",
+            "on-tertiary-container":     "#ffffff",
+            "error":                     "#ffb4aa",
+            "on-error":                  "#690005",
+            "error-container":           "#93000a",
+            "on-error-container":        "#ffdad6",
+            "primary-fixed":             "#dde5ff",
+            "primary-fixed-dim":         "#c4d0ff",
+            "secondary-fixed":           "#f8e5e6",
+            "secondary-fixed-dim":       "#e0cece",
+            "background":                "#0d0a0f",
+            "on-background":             "#ece5f0"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            "headline-xl":  ["Syne"],
+            "headline-lg":  ["Syne"],
+            "headline-md":  ["Syne"],
+            "headline-sm":  ["Syne"],
+            "body-lg":      ["Plus Jakarta Sans"],
+            "body-md":      ["Plus Jakarta Sans"],
+            "body-sm":      ["Plus Jakarta Sans"],
+            "label-lg":     ["Space Grotesk"],
+            "label-md":     ["Space Grotesk"],
+            "label-sm":     ["Space Grotesk"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md select-none">
+
+  <!-- ── igloo.inc Custom Cursor Aurora ── -->
+  <div id="cursor-aurora"></div>
+  <div id="cursor-aurora-outer"></div>
+
+  <!-- ── Scroll Progress Line (top of viewport) ── -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ── Context-Aware Breadcrumb Navigation ── -->
+  <div id="nav-breadcrumb">
+    <span id="breadcrumb-label">Chapter 01</span>
+  </div>
+
+  <!-- ── Stardust Canvas ── -->
+  <canvas id="cosmic-canvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-70"></canvas>
+
+  <!-- ── Floating Controls (igloo.inc minimal strip) ── -->
+  <aside class="igloo-controls" aria-label="Controls">
+    <button id="audio-toggle" class="igloo-pill-btn" type="button" aria-label="Toggle Audio">
+      <span id="audio-icon" class="material-symbols-outlined" style="font-size:14px; animation: pulse 2s ease-in-out infinite;">graphic_eq</span>
+      <span>Cosmic Lofi</span>
+    </button>
+    <button id="drawer-toggle" class="igloo-icon-btn" type="button" aria-label="Secret Letter">
+      <span class="material-symbols-outlined" style="font-size:16px;">lock_open</span>
+    </button>
+  </aside>
+
+  <!-- ── Desktop View Mode Pill ── -->
+  <div class="view-mode-pill">
+    <button id="view-mode-toggle"
+      class="igloo-pill-btn"
+      type="button">
+      <span class="material-symbols-outlined" style="font-size:14px;">devices</span>
+      <span>Compact Phone Frame</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       APP VIEWPORT
+  ═══════════════════════════════════════════════ -->
+  <div id="app-viewport" class="pt-safe pb-safe">
+
+    <!-- ───────────────────────────────────────────
+         ACT 1 · THE FIRST GLIMPSE
+    ──────────────────────────────────────────── -->
+    <section class="act-one-hero">
+
+      <!-- Chapter Badge -->
+      <div data-reveal class="chapter-pill">
+        <span class="material-symbols-outlined" style="font-size:12px; color: rgba(196,208,255,0.7)">auto_awesome</span>
+        Chapter 01 &nbsp;·&nbsp; The First Glimpse
+      </div>
+
+      <!-- Couple Silhouette -->
+      <div class="relative w-full max-w-sm flex items-center justify-center my-4" data-reveal data-parallax="-0.12" data-parallax-base="0">
+        <!-- Ambient backlight aura -->
+        <div class="absolute w-64 h-64 rounded-full pointer-events-none -z-10"
+          style="background: radial-gradient(ellipse at 50% 50%, rgba(100,80,180,0.12) 0%, transparent 70%); filter: blur(32px);"></div>
+
+        <svg class="w-full h-72 drop-shadow-2xl" fill="none" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient cx="50%" cy="50%" id="lunar-glow" r="50%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.42"></stop>
+              <stop offset="45%" stop-color="#c4d0ff" stop-opacity="0.22"></stop>
+              <stop offset="75%" stop-color="#5c6ea0" stop-opacity="0.07"></stop>
+              <stop offset="100%" stop-color="#0d0a0f" stop-opacity="0"></stop>
+            </radialGradient>
+            <linearGradient id="crescent-shimmer" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%"   stop-color="#ffffff"></stop>
+              <stop offset="60%"  stop-color="#e8eeff"></stop>
+              <stop offset="100%" stop-color="#c4d0ff"></stop>
+            </linearGradient>
+            <radialGradient cx="45%" cy="45%" id="earthshine-disk" r="50%">
+              <stop offset="0%"   stop-color="#2a2840" stop-opacity="0.3"></stop>
+              <stop offset="85%"  stop-color="#1a1830" stop-opacity="0.5"></stop>
+              <stop offset="100%" stop-color="#0d0a0f" stop-opacity="0.1"></stop>
+            </radialGradient>
+            <filter height="140%" id="crescent-bloom" width="140%" x="-20%" y="-20%">
+              <feGaussianBlur result="blur" stdDeviation="1.5"></feGaussianBlur>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+            </filter>
+            <linearGradient id="boyRim" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#dde5ff" stop-opacity="0.95" />
+              <stop offset="55%"  stop-color="#5c6ea0" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#0d0a0f" stop-opacity="0.1" />
+            </linearGradient>
+            <linearGradient id="girlRim" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#dde5ff" stop-opacity="0.95" />
+              <stop offset="55%"  stop-color="#5c6ea0" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#0d0a0f" stop-opacity="0.1" />
+            </linearGradient>
+            <radialGradient id="hillGlow" cx="50%" cy="30%" r="70%">
+              <stop offset="0%"   stop-color="#2a2440" stop-opacity="0.5" />
+              <stop offset="60%"  stop-color="#181520" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#0d0a0f" stop-opacity="1" />
+            </radialGradient>
+          </defs>
+
+          <!-- Moon aura + crescent -->
+          <circle cx="160" cy="48" fill="url(#lunar-glow)" r="50"></circle>
+          <circle cx="160" cy="48" fill="url(#earthshine-disk)" r="24" stroke="#ffffff" stroke-opacity="0.07" stroke-width="0.75"></circle>
+          <path d="M166 24 A 24 24 0 1 0 183 65 A 20.5 20.5 0 1 1 166 24 Z"
+            fill="url(#crescent-shimmer)" filter="url(#crescent-bloom)" opacity="0.95"></path>
+          <path d="M166 24 A 24 24 0 0 0 178 63 A 22 22 0 0 1 167 26 Z" fill="#ffffff" opacity="0.78"></path>
+
+          <!-- Hill -->
+          <path d="M -10 220 Q 160 132 330 220 L 330 220 L -10 220 Z" fill="url(#hillGlow)" />
+          <path d="M -10 220 Q 160 135 330 220" stroke="#5c6ea0" stroke-opacity="0.22" stroke-width="1.2" />
+
+          <!-- Fireflies -->
+          <circle class="animate-ping"  cx="122" cy="118" fill="#c4d0ff" opacity="0.55" r="1.1"></circle>
+          <circle class="animate-pulse" cx="198" cy="112" fill="#e0cece" opacity="0.65" r="1.3"></circle>
+          <circle class="animate-pulse" cx="160" cy="96"  fill="#c4d0fc" opacity="0.85" r="0.9"></circle>
+          <circle cx="134" cy="90" fill="#fff" opacity="0.8"  r="1.0"></circle>
+          <circle cx="186" cy="86" fill="#fff" opacity="0.6"  r="0.9"></circle>
+          <circle cx="145" cy="102" fill="#c4d0ff" opacity="0.45" r="0.8"></circle>
+
+          <!-- BOY silhouette (left, masculine, short hair) -->
+          <g id="boy-silhouette">
+            <!-- Jacket / torso -->
+            <path d="M 112 174 C 115 152 123 141 134 139 C 139 138 150 139 156 146 C 160 151 161 162 160 174 Z"
+              fill="#060409" />
+            <!-- Moonlit rim on left shoulder -->
+            <path d="M 112 174 C 115 152 123 141 134 139 C 138 138 143 139 148 141"
+              stroke="url(#boyRim)" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.9" />
+            <!-- Neck -->
+            <path d="M 136 139 L 136 131 C 139 132 144 132 147 131 L 147 139 Z" fill="#060409" />
+            <!-- Head -->
+            <path d="M 134 131 C 130 127 129 118 131 112 C 133 107 137 103 144 102 C 151 101 157 105 158 112 C 159 118 156 126 150 131 C 146 133 138 133 134 131 Z"
+              fill="#060409" />
+            <!-- Short hair crown -->
+            <path d="M 133 118 C 130 112 133 105 140 102 C 146 100 154 101 157 107 C 160 112 158 118 156 121 C 153 120 151 117 148 118 C 143 119 139 122 133 118 Z"
+              fill="#040308" />
+            <!-- Hair rim light -->
+            <path d="M 131 119 C 130 111 133 105 141 102 C 147 100 155 103 157 108"
+              stroke="#c0ccee" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.92" />
+          </g>
+
+          <!-- GIRL silhouette (right, long flowing hair, leaning gently) -->
+          <g id="girl-silhouette">
+            <!-- Long hair back drape -->
+            <path d="M 170 110 C 167 118 164 130 163 143 C 162 155 164 165 166 174 C 171 174 180 174 181 165 C 183 154 185 143 187 132 C 188 124 185 116 180 110 Z"
+              fill="#040308" />
+            <!-- Torso -->
+            <path d="M 155 149 C 162 142 173 141 182 143 C 191 146 200 155 201 174 C 183 176 165 176 155 174 Z"
+              fill="#060409" />
+            <!-- Right shoulder rim -->
+            <path d="M 182 143 C 191 146 200 155 201 174"
+              stroke="url(#girlRim)" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.88" />
+            <!-- Head (gently tilted toward boy) -->
+            <path d="M 163 127 C 160 122 160 112 164 107 C 168 102 176 101 181 104 C 186 107 188 115 187 122 C 185 129 180 132 174 131 C 168 130 165 129 163 127 Z"
+              fill="#060409" />
+            <!-- Hair contour + flowing waves -->
+            <path d="M 170 102 C 178 101 186 104 189 111 C 193 119 194 128 193 137 C 192 145 194 153 196 161 C 197 164 195 167 192 166 C 189 161 188 151 187 143 C 186 132 188 124 186 117 C 184 110 180 106 173 104 C 168 104 166 106 165 109 C 164 107 166 103 170 102 Z"
+              fill="#030207" />
+            <!-- Hair shimmer tendril -->
+            <path d="M 174 102 C 182 102 188 106 191 113 C 193 122 193 132 192 141 C 191 150 193 158 195 164"
+              stroke="#c0ccee" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.9" />
+            <!-- Starlight hairpin -->
+            <circle cx="187" cy="113" r="1.3" fill="#ffffff" opacity="0.95"></circle>
+            <circle cx="187" cy="113" r="3"   fill="rgba(196,208,255,0.3)"></circle>
+          </g>
+
+          <!-- Intertwined hands -->
+          <ellipse cx="159" cy="166" rx="7.5" ry="4.5" fill="#060409" />
+          <path d="M 154 164 C 157 162 161 162 165 164"
+            stroke="#c4d0ff" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.85" />
+          <!-- Warm glow beneath them -->
+          <ellipse cx="158" cy="174" rx="52" ry="7" fill="#5c6ea0" fill-opacity="0.12" />
+        </svg>
+      </div>
+
+      <!-- Poetic Quote -->
+      <div class="max-w-xs mx-auto space-y-5 px-2 pb-6" data-reveal>
+        <div class="igloo-divider"></div>
+        <blockquote class="igloo-quote">
+          "The Moon is always <span style="color: rgba(196,208,255,0.9); font-style: italic;">Beautiful</span>
+          even when it changes its shape, and even when there's a lunar eclipse."
+        </blockquote>
+        <p style="font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(224,206,206,0.65); line-height: 1.65; letter-spacing: 0.01em;">
+          Because during all this... the Moon is just hidden, never truly disappeared.
+        </p>
+        <div class="igloo-divider"></div>
+      </div>
+
+    </section>
+
+    <!-- thin geometric line between acts -->
+    <div class="igloo-line"></div>
+
+    <!-- ───────────────────────────────────────────
+         ACT 2 · ROTATING MOON & MEMORY CONSTELLATIONS
+    ──────────────────────────────────────────── -->
+    <section class="relative z-10 w-full min-h-screen py-16 px-4 flex flex-col items-center justify-center" id="act-two">
+
+      <!-- Chapter Badge -->
+      <div data-reveal class="chapter-pill mb-6">
+        <span class="material-symbols-outlined" style="font-size:12px; color: rgba(196,208,255,0.7)">orbit</span>
+        Chapter 02 &nbsp;·&nbsp; Orbital Relics
+      </div>
+
+      <!-- Headline -->
+      <div class="text-center max-w-xs mb-6 px-2 space-y-2" data-reveal>
+        <h2 style="font-family: var(--font-headline); font-size: clamp(22px,6vw,28px); font-weight: 600; color: rgba(236,229,240,0.95); letter-spacing: -0.015em;">
+          Our Gravitational Field
+        </h2>
+        <p style="font-family: var(--font-body); font-size: 13px; font-weight: 300; color: rgba(192,191,204,0.65); letter-spacing: 0.01em; line-height: 1.6;">
+          Tap a memory beacon to unlock its starlight.
+        </p>
+      </div>
+
+      <!-- ── igloo.inc Style 3D Celestial Crystal Stage ── -->
+      <div id="crystal-stage"
+        class="relative w-full max-w-[390px] h-[390px] sm:max-w-[430px] sm:h-[430px] mx-auto flex items-center justify-center select-none my-4"
+        data-reveal>
+
+        <!-- Orbital Radar & Coordinate Guide Rings (igloo.inc style) -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-35" viewBox="0 0 400 400" fill="none">
+          <circle cx="200" cy="200" r="185" stroke="rgba(196,208,255,0.18)" stroke-width="0.75" stroke-dasharray="3 6" />
+          <circle cx="200" cy="200" r="148" stroke="rgba(196,208,255,0.12)" stroke-width="0.75" />
+          <circle cx="200" cy="200" r="120" stroke="rgba(255,255,255,0.10)" stroke-width="0.75" stroke-dasharray="2 4" />
+          <!-- Coordinate crosshairs -->
+          <line x1="200" y1="10" x2="200" y2="24" stroke="rgba(196,208,255,0.4)" stroke-width="1" />
+          <line x1="200" y1="376" x2="200" y2="390" stroke="rgba(196,208,255,0.4)" stroke-width="1" />
+          <line x1="10" y1="200" x2="24" y2="200" stroke="rgba(196,208,255,0.4)" stroke-width="1" />
+          <line x1="376" y1="200" x2="390" y2="200" stroke="rgba(196,208,255,0.4)" stroke-width="1" />
+          <!-- Fine coordinate micro-text -->
+          <text x="206" y="20" fill="rgba(196,208,255,0.45)" font-family="Space Grotesk, monospace" font-size="8" letter-spacing="1.5">00°N</text>
+          <text x="206" y="386" fill="rgba(196,208,255,0.45)" font-family="Space Grotesk, monospace" font-size="8" letter-spacing="1.5">180°S</text>
+          <text x="14" y="194" fill="rgba(196,208,255,0.45)" font-family="Space Grotesk, monospace" font-size="8" letter-spacing="1.5">270°W</text>
+          <text x="350" y="194" fill="rgba(196,208,255,0.45)" font-family="Space Grotesk, monospace" font-size="8" letter-spacing="1.5">090°E</text>
+        </svg>
+
+        <!-- Radiant Lunar Corona Soft Glows & Caustics -->
+        <div class="absolute -inset-10 rounded-full blur-3xl pointer-events-none lunar-pulse-ring"
+          style="background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(196,208,255,0.16) 45%, transparent 70%);"></div>
+        <div class="absolute inset-0 rounded-full blur-2xl pointer-events-none"
+          style="background: rgba(196,208,255,0.16);"></div>
+        <div class="crystal-caustic-ring" style="inset: 6px;"></div>
+
+        <!-- Photorealistic 3D Moon Sphere Container (Full Size, Centered, Interactive) -->
+        <div id="interactive-moon"
+          class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden moon-radiant-glow z-10 touch-none cursor-grab active:cursor-grabbing shadow-2xl">
+          <div id="lunar-surface"
+            class="w-full h-full rounded-full overflow-hidden flex items-center justify-center pointer-events-none"
+            style="transform: rotate(0deg); will-change: transform;">
+            <img src="./assets/images/moon.png"
+              onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBClqqJBU-NnTfOV5mP_brz4bLDPX6E9lQPt_4rMbQlZeUL7m_67xi5C9mtO1ROKXVNuUAVwW8k5N7UPHAaf8z3s5aNeApso5fthZjepbqf89BomhZNJ790Dh-jw8mEug59dlNA7178vskVBuaON6Al2Z3h61Emi5CWrAvNgy6nYtebvS__Br8QDVeK0ck-ci6thnv_6zkhJlYe4Rxc-4-dgsYswZnjS2xTSrq40Diw'"
+              alt="Photorealistic 3D Moon Surface"
+              class="w-full h-full object-cover rounded-full select-none pointer-events-none"
+              style="filter: brightness(1.08) contrast(1.06);" />
+          </div>
+          <!-- Spherical Shading 3D Normal & Limb Darkening Overlay -->
+          <div class="absolute inset-0 rounded-full pointer-events-none"
+            style="background: radial-gradient(circle at 42% 38%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.02) 50%, rgba(8,6,12,0.32) 82%, rgba(6,4,10,0.72) 100%); mix-blend-mode: multiply;"></div>
+          <!-- Atmospheric Starlight Rim Glow -->
+          <div class="absolute inset-0 rounded-full pointer-events-none"
+            style="box-shadow: inset 0 0 25px rgba(255,255,255,0.55), inset 4px 4px 16px rgba(255,255,255,0.4), inset -12px -12px 28px rgba(10,8,16,0.6);"></div>
+          <div class="absolute top-2 left-4 rounded-full pointer-events-none"
+            style="width: 130px; height: 96px; background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, transparent 100%); filter: blur(10px); transform: rotate(-12deg);"></div>
+          <!-- igloo.inc Dynamic Interactive Specular Light Layer -->
+          <div id="lunar-specular-light"></div>
+        </div>
+
+        <!-- ── igloo.inc Style Orbital Memory Beacons Overlay (z-40) ── -->
+        <div id="memory-tags-overlay" class="absolute inset-0 pointer-events-none z-40">
+
+          <!-- 1. California burrito (Top-Left, 10:30 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute top-3 left-1 sm:left-3"
+            data-beacon="burrito"
+            data-memory="The late night food truck stop when you stole my fries and smiled that unforgettable midnight smile.">
+            <span class="tag-index">01</span>
+            <span class="tag-beacon-dot bg-primary"></span>
+            <span class="tag-label">California burrito</span>
+          </button>
+
+          <!-- 2. Hrithik Roshan (Top-Center, 12:00 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute -top-3 right-8 sm:right-12"
+            data-beacon="hrithik"
+            data-memory="Your exaggerated attempt to recreate the 'Kaho Naa Pyaar Hai' hook step inside the empty kitchen.">
+            <span class="tag-index">02</span>
+            <span class="tag-beacon-dot bg-primary-fixed"></span>
+            <span class="tag-label">Hrithik Roshan</span>
+          </button>
+
+          <!-- 3. Polar bear (Top-Right, 1:45 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute top-20 -right-2 sm:right-1"
+            data-beacon="polar"
+            data-memory="Our silly code for cozying up under three layers of fleece duvets in December.">
+            <span class="tag-index">03</span>
+            <span class="tag-beacon-dot bg-secondary"></span>
+            <span class="tag-label">Polar bear</span>
+          </button>
+
+          <!-- 4. Dumbass (Bottom-Right, 4:30 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute bottom-16 -right-1 sm:right-2"
+            data-beacon="dumbass"
+            data-memory="The affectionate whisper right after one of us dropped our keys down the hallway rug again.">
+            <span class="tag-index">04</span>
+            <span class="tag-beacon-dot bg-error"></span>
+            <span class="tag-label">Dumbass</span>
+          </button>
+
+          <!-- 5. YRC (Bottom-Center, 6:00 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute -bottom-3 left-1/2 -translate-x-1/2"
+            data-beacon="yrc"
+            data-memory="The quiet roof ledge where we watched the city dim its headlights and made wishes on passing flights.">
+            <span class="tag-index">05</span>
+            <span class="tag-beacon-dot bg-secondary-fixed"></span>
+            <span class="tag-label">YRC</span>
+          </button>
+
+          <!-- 6. Naturals (Bottom-Left, 7:30 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute bottom-14 left-1 sm:left-3"
+            data-beacon="naturals"
+            data-memory="Tender coconut and Roasted almond ice creams in paper cup and a cone while walking the quietly eating.">
+            <span class="tag-index">06</span>
+            <span class="tag-beacon-dot bg-tertiary"></span>
+            <span class="tag-label">Naturals</span>
+          </button>
+
+          <!-- 7. BGS (Mid-Left, 9:15 position) -->
+          <button
+            class="memory-tag pointer-events-auto absolute top-28 -left-2 sm:left-0"
+            data-beacon="bgs"
+            data-memory="Blue skies, green grass, and secret glances exchanged when nobody else was looking our way.">
+            <span class="tag-index">07</span>
+            <span class="tag-beacon-dot bg-surface-tint"></span>
+            <span class="tag-label">BGS</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Active Memory Card -->
+      <div id="memory-display"
+        class="w-full max-w-sm mt-8 p-5 rounded-2xl backdrop-blur-xl shadow-2xl border relative"
+        style="background: rgba(35,31,42,0.92); border-color: rgba(196,208,255,0.12);"
+        data-reveal>
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2.5" style="color: rgba(196,208,255,0.9);">
+            <span id="memory-icon" class="material-symbols-outlined" style="font-size: 20px;">lens_blur</span>
+            <span id="memory-title"
+              style="font-family: var(--font-headline); font-size: 17px; font-weight: 600; letter-spacing: 0.01em;">
+              Tap any memory beacon above
+            </span>
+          </div>
+          <button id="edit-memory-btn"
+            class="w-7 h-7 rounded-full flex items-center justify-center transition-all opacity-0 pointer-events-none"
+            style="background: rgba(255,255,255,0.06); color: rgba(196,208,255,0.6);"
+            title="Customize this memory">
+            <span class="material-symbols-outlined" style="font-size:14px;">edit</span>
+          </button>
+        </div>
+        <p id="memory-text"
+          style="font-family: var(--font-body); font-size: 16px; font-weight: 300; color: rgba(236,229,240,0.85); line-height: 1.7; letter-spacing: 0.01em;">
+          Each memory is a star anchored to our gravitational center. Drag or tilt the crystal moon to turn our night sky.
+        </p>
+      </div>
+
+      <!-- Edit Memory Modal -->
+      <div id="memory-edit-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+        style="background: rgba(0,0,0,0.75); backdrop-filter: blur(12px);">
+        <div class="w-full max-w-sm p-5 rounded-2xl shadow-2xl space-y-4"
+          style="background: rgba(35,31,42,0.98); border: 1px solid rgba(196,208,255,0.15);">
+          <div class="flex items-center justify-between">
+            <h3 style="font-family: var(--font-headline); font-size: 20px; font-weight: 600; color: rgba(236,229,240,0.95);"
+              id="modal-beacon-title">Edit Memory</h3>
+            <button id="close-memory-modal"
+              class="w-7 h-7 rounded-full flex items-center justify-center"
+              style="background: rgba(255,255,255,0.06); color: rgba(196,208,255,0.6);">
+              <span class="material-symbols-outlined" style="font-size:14px;">close</span>
+            </button>
+          </div>
+          <p style="font-size: 13px; color: rgba(192,191,204,0.65); font-family: var(--font-body);">
+            Set the real sentence or story for this constellation point:
+          </p>
+          <textarea id="modal-memory-input" rows="4"
+            class="w-full p-3.5 rounded-xl resize-none focus:outline-none leading-relaxed"
+            style="background: rgba(10,8,15,0.8); border: 1px solid rgba(196,208,255,0.15); color: rgba(236,229,240,0.9); font-family: var(--font-body); font-size: 15px; line-height: 1.6;"
+            placeholder="Write your memory here..."></textarea>
+          <div class="flex items-center justify-end gap-2 pt-1">
+            <button id="cancel-memory-edit"
+              class="px-4 py-1.5 rounded-full text-sm"
+              style="background: rgba(255,255,255,0.06); color: rgba(192,191,204,0.7); font-family: var(--font-label); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">Cancel</button>
+            <button id="save-memory-edit"
+              class="px-5 py-1.5 rounded-full text-sm font-semibold shadow-md"
+              style="background: rgba(92,110,160,0.9); color: #fff; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">Save Memory</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- thin line -->
+    <div class="igloo-line"></div>
+
+    <!-- ───────────────────────────────────────────
+         ACT 3 · THE ETERNAL ACCEPTANCE
+    ──────────────────────────────────────────── -->
+    <section class="relative z-10 w-full min-h-screen py-16 px-6 flex flex-col justify-between items-center text-center">
+
+      <!-- Chapter Badge -->
+      <div data-reveal class="chapter-pill">
+        <span class="material-symbols-outlined" style="font-size:12px; color: rgba(196,208,255,0.7)">flare</span>
+        Chapter 03 &nbsp;·&nbsp; The Eternal Acceptance
+      </div>
+
+      <!-- Main Statement — igloo.inc word-by-word reveal -->
+      <div class="my-auto max-w-md space-y-8 relative py-8 w-full">
+        <div class="absolute inset-0 -z-10 rounded-full pointer-events-none"
+          style="background: rgba(92,110,160,0.07); filter: blur(60px);"></div>
+
+        <!-- Line 1 -->
+        <div class="space-y-1" data-reveal>
+          <p style="font-family: var(--font-label); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(192,191,204,0.4); margin-bottom: 10px;">
+            I
+          </p>
+          <p style="font-family: var(--font-headline); font-size: clamp(28px,8vw,36px); font-weight: 600; color: rgba(236,229,240,0.95); letter-spacing: -0.02em; line-height: 1.1;">
+            accept every part of you.
+          </p>
+        </div>
+
+        <!-- Thin divider -->
+        <div class="igloo-divider"></div>
+
+        <!-- Line 2 -->
+        <div class="space-y-1" data-reveal>
+          <p style="font-family: var(--font-label); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(192,191,204,0.4); margin-bottom: 10px;">
+            I
+          </p>
+          <p style="font-family: var(--font-headline); font-size: clamp(28px,8vw,36px); font-weight: 600; color: rgba(224,206,206,0.85); letter-spacing: -0.02em; line-height: 1.1;">
+            appreciate every part of you.
+          </p>
+        </div>
+
+        <!-- Thin divider -->
+        <div class="igloo-divider"></div>
+
+        <!-- Line 3 — Hero statement -->
+        <div class="space-y-1" data-reveal>
+          <p style="font-family: var(--font-label); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(192,191,204,0.4); margin-bottom: 10px;">
+            I
+          </p>
+          <p style="font-family: var(--font-headline); font-size: clamp(36px,10vw,52px); font-weight: 700; color: rgba(196,208,255,1); letter-spacing: -0.025em; line-height: 1.0; text-shadow: 0 0 40px rgba(196,208,255,0.3);">
+            love every part of you.
+          </p>
+        </div>
+
+        <!-- Closing prose -->
+        <div data-reveal style="padding-top: 8px;">
+          <div style="width: 48px; height: 1px; background: rgba(196,208,255,0.2); margin: 0 auto 20px;"></div>
+          <p style="font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(192,191,204,0.55); line-height: 1.75; letter-spacing: 0.01em; max-width: 260px; margin: 0 auto;">
+            Through every waxing crest and dormant phase, my soul remains in your orbit. Always and effortlessly.
+          </p>
+        </div>
+      </div>
+
+      <!-- Loop / Continue button -->
+      <div class="w-full flex flex-col items-center gap-3 pt-6 pb-4" data-reveal>
+        <button id="loop-warp-btn" class="igloo-loop-btn" type="button">
+          <span class="material-symbols-outlined" style="font-size: 18px;">all_inclusive</span>
+          Continue The Orbit ∞
+        </button>
+        <span style="font-family: var(--font-label); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(122,122,138,0.6);">
+          or scroll to loop
+        </span>
+      </div>
+    </section>
+
+    <!-- ── Secret Message Drawer Backdrop ── -->
+    <div id="drawer-backdrop"
+      class="fixed inset-0 z-40 opacity-0 pointer-events-none transition-opacity duration-300"
+      style="background: rgba(0,0,0,0.65); backdrop-filter: blur(8px);"></div>
+
+    <!-- ── Secret Message Drawer ── -->
+    <div id="secret-drawer"
+      class="fixed inset-x-0 bottom-0 z-50 transform translate-y-full transition-transform duration-500 ease-in-out px-4 pb-6 pt-2 max-w-md mx-auto pointer-events-none">
+      <div class="p-6 rounded-2xl shadow-2xl space-y-4 pointer-events-auto"
+        style="background: rgba(35,31,42,0.97); border: 1px solid rgba(196,208,255,0.12); backdrop-filter: blur(24px);">
+        <!-- Drag handle -->
+        <div style="width: 48px; height: 4px; background: rgba(196,208,255,0.15); border-radius: 999px; margin: -4px auto 8px;"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size: 20px; color: rgba(196,208,255,0.8);">favorite</span>
+            <span style="font-family: var(--font-headline); font-size: 20px; font-weight: 600; color: rgba(236,229,240,0.95);">Secret Stardust Vault</span>
+          </div>
+          <button id="drawer-close"
+            class="w-7 h-7 rounded-full flex items-center justify-center"
+            style="background: rgba(255,255,255,0.06); color: rgba(196,208,255,0.6);"
+            type="button">
+            <span class="material-symbols-outlined" style="font-size:14px;">close</span>
+          </button>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 15px; font-weight: 300; color: rgba(192,191,204,0.75); line-height: 1.75;">
+          "Whenever the universe feels loud or the path looks dim, remember that we carved our names into these stars.
+          You will always be my safest sanctuary, my wildest laughter, and my favorite constellation."
+        </p>
+        <div class="flex items-center justify-between pt-2" style="border-top: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-family: var(--font-label); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(196,208,255,0.6);">Forever Yours</span>
+          <span style="font-family: var(--font-label); font-size: 10px; letter-spacing: 0.1em; color: rgba(122,122,138,0.5);">Written in the Cosmos</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#app-viewport -->
+
+  <!-- Application Modules -->
+  <script type="module" src="./js/app.js?v=4.0"></script>
+
+</body>
+</html>

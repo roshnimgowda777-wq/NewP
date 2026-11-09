@@ -1,0 +1,19 @@
+{
+  "name": "Celestial Love Journey",
+  "short_name": "Celestial",
+  "description": "An intimate astronomical journey under starlight skies with interactive lunar orbit and memory beacons.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#151216",
+  "theme_color": "#151216",
+  "icons": [
+    {
+      "src": "./assets/icons/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

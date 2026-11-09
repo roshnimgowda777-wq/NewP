@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#151216;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+@keyframes celestial-halo {
+  0% { transform: scale(0.9); opacity: 0.95; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+.halo-active::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  animation: celestial-halo 0.75s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes lunar-glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+.lunar-pulse-ring {
+  animation: lunar-glow-pulse 4.5s ease-in-out infinite;
+}
+@keyframes starlight-radiance {
+  0%, 100% { opacity: 0.92; filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.45)) drop-shadow(0 0 70px rgba(181, 197, 249, 0.35)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 95px rgba(181, 197, 249, 0.55)); }
+}
+.moon-radiant-glow {
+  animation: starlight-radiance 5s ease-in-out infinite;
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#b5c5f9","primary-container":"#6575a4","outline-variant":"#45464f","on-tertiary-fixed":"#061941","inverse-on-surface":"#332f33","surface":"#151216","on-primary-container":"#ffffff","on-surface-variant":"#c5c6d0","surface-dim":"#151216","outline":"#8f9099","surface-container":"#221f22","on-background":"#e8e0e5","surface-bright":"#3c383c","on-error":"#690005","primary":"#b5c5f9","error-container":"#93000a","error":"#ffb4ab","on-tertiary-fixed-variant":"#35456f","on-secondary-container":"#c5b0b1","tertiary-container":"#6575a2","primary-fixed-dim":"#b5c5f9","surface-container-highest":"#373438","secondary-fixed":"#f4ddde","on-primary-fixed":"#051943","surface-container-low":"#1d1b1e","on-error-container":"#ffdad6","secondary":"#d7c2c2","primary-fixed":"#dae2ff","inverse-primary":"#4d5d8a","surface-variant":"#373438","tertiary":"#b5c5f7","on-secondary-fixed-variant":"#524344","background":"#151216","on-primary-fixed-variant":"#354571","on-tertiary-container":"#ffffff","surface-container-lowest":"#100d11","surface-container-high":"#2c292d","on-primary":"#1e2f59","on-secondary-fixed":"#24191a","on-tertiary":"#1e2f57","inverse-surface":"#e8e0e5","tertiary-fixed":"#dae2ff","on-surface":"#e8e0e5","on-secondary":"#3a2d2e","secondary-fixed-dim":"#d7c2c2","secondary-container":"#524344","tertiary-fixed-dim":"#b5c5f7"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-xl":"3rem",margin:"2rem","space-md":"1rem",gutter:"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-lg":"1.75rem"},fontFamily:{"label-sm":["Space Grotesk"],"headline-sm":["Syne"],"headline-lg-mobile":["Syne"],"headline-xl-mobile":["Syne"],"label-lg":["Space Grotesk"],"label-md":["Space Grotesk"],"body-lg":["Plus Jakarta Sans"],"headline-lg":["Syne"],"headline-md":["Syne"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Syne"],"body-sm":["Plus Jakarta Sans"]},fontSize:{"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.12em",fontWeight:"600"}],"headline-sm":["22px",{lineHeight:"30px",letterSpacing:"0.01em",fontWeight:"500"}],"headline-lg-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["38px",{lineHeight:"46px",letterSpacing:"-0.01em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.06em",fontWeight:"500"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.08em",fontWeight:"500"}],"body-lg":["18px",{lineHeight:"28px",letterSpacing:"0.01em",fontWeight:"400"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["28px",{lineHeight:"36px",letterSpacing:"0em",fontWeight:"600"}],"body-md":["15px",{lineHeight:"24px",letterSpacing:"0.01em",fontWeight:"400"}],"headline-xl":["56px",{lineHeight:"64px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-sm":["13px",{lineHeight:"20px",letterSpacing:"0.015em",fontWeight:"400"}]}}}};</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col pt-safe pb-safe selection:bg-primary-container selection:text-on-primary-container"><main class="flex-1 flex flex-col relative w-full bg-surface"><div class="flex flex-col w-full relative overflow-hidden select-none">
+<!-- Interactive Stardust & Meteor Canvas Overlay -->
+<canvas class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-80" id="cosmic-canvas"></canvas>
+<!-- Floating Audio & Audio Ambience Pill Controls -->
+<aside aria-label="Cosmic Audio Controls" class="fixed top-4 right-4 z-40 flex items-center space-x-2">
+<button aria-label="Toggle Cosmic Audio" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-surface-container-high/80 backdrop-blur-md shadow-lg transition-transform active:scale-95" id="audio-toggle" type="button">
+<span class="material-symbols-outlined text-primary text-body-md animate-pulse" id="audio-icon">graphic_eq</span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase" id="audio-label">Cosmic Lofi</span>
+</button>
+<button aria-label="Open Secret Constellation Letter" class="w-8 h-8 rounded-full bg-surface-container-high/80 backdrop-blur-md flex items-center justify-center text-primary transition-transform active:scale-90 shadow-md" id="drawer-toggle" type="button">
+<span class="material-symbols-outlined text-body-md">lock_open</span>
+</button>
+</aside>
+<!-- ACT 1: THE FIRST GLIMPSE -->
+<section class="relative z-10 w-full min-h-[813px] flex flex-col justify-between items-center px-6 py-12 text-center">
+<!-- Star Glint Constellation Header Badge -->
+<div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-container-low/70 backdrop-blur-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-label-md">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Coordinates // Chapter 01</span>
+</div>
+<!-- Silhouette Graphic on Hill with Handholding & Moon Aura -->
+<div class="relative w-full max-w-sm flex items-center justify-center my-6">
+<!-- Ambient celestial backlight aura -->
+<div class="absolute w-56 h-56 rounded-full bg-gradient-to-tr from-surface-tint/15 via-primary-container/25 to-transparent blur-3xl -z-10 pointer-events-none"></div>
+<!-- Atmospheric Celestial Hill Silhouette SVG with Delicate Realistic Luminous Crescent Moon -->
+<svg class="w-full h-64 drop-shadow-[0_10px_25px_rgba(101,117,164,0.18)]" fill="none" viewbox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="50%" cy="50%" id="lunar-glow" r="50%">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"></stop>
+<stop offset="45%" stop-color="#b5c5f9" stop-opacity="0.25"></stop>
+<stop offset="75%" stop-color="#6575a4" stop-opacity="0.08"></stop>
+<stop offset="100%" stop-color="#151216" stop-opacity="0"></stop>
+</radialgradient>
+<lineargradient id="crescent-shimmer" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffffff"></stop>
+<stop offset="60%" stop-color="#e8eefc"></stop>
+<stop offset="100%" stop-color="#b5c5f9"></stop>
+</lineargradient>
+<radialgradient cx="45%" cy="45%" id="earthshine-disk" r="50%">
+<stop offset="0%" stop-color="#2a2834" stop-opacity="0.3"></stop>
+<stop offset="85%" stop-color="#1b1822" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#151216" stop-opacity="0.1"></stop>
+</radialgradient>
+<filter height="140%" id="crescent-bloom" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="1.5"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+<lineargradient id="hill-gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#221f22"></stop>
+<stop offset="100%" stop-color="#100d11"></stop>
+</lineargradient>
+</defs>
+<!-- Moon Ambient Atmospheric Halo -->
+<circle cx="160" cy="55" fill="url(#lunar-glow)" r="52"></circle>
+<!-- Faint Earthshine Lunar Disk -->
+<circle cx="160" cy="55" fill="url(#earthshine-disk)" r="25" stroke="#ffffff" stroke-opacity="0.08" stroke-width="0.75"></circle>
+<!-- Realistic Delicate Crescent Moon with Crater Rim Texture -->
+<path d="M166 31 A 24.5 24.5 0 1 0 184 72 A 21 21 0 1 1 166 31 Z" fill="url(#crescent-shimmer)" filter="url(#crescent-bloom)" opacity="0.95"></path>
+<path d="M166 31 A 24.5 24.5 0 0 0 178 70 A 22.5 22.5 0 0 1 167 33 Z" fill="#ffffff" opacity="0.8"></path>
+<!-- Distant Hill Crest -->
+<path d="M-20 220 C60 170 110 160 160 162 C220 165 270 180 340 220 Z" fill="#1d1b1e" opacity="0.6"></path>
+<!-- Fore Hill Silhouette -->
+<path d="M-10 220 C70 152 140 148 160 148 C200 148 260 165 330 220 Z" fill="url(#hill-gradient)"></path>
+<!-- Lovers Silhouette (Boy & Girl Sitting Holding Hands from back) -->
+<g fill="#09070a">
+<!-- Guy silhouette (left) -->
+<circle cx="146" cy="130" r="6.5"></circle>
+<path d="M138 148 C138 139 143 138 146 138 C149 138 154 139 154 148 C154 153 148 155 138 156 Z"></path>
+<!-- Girl silhouette with flowing hair (right) -->
+<circle cx="162" cy="131" r="5.8"></circle>
+<path d="M156 148 C156 140 160 139 163 139 C166 139 171 140 170 149 C170 154 163 155 156 156 Z"></path>
+<!-- Flowing hair tail -->
+<path d="M164 133 C168 136 170 143 167 146 C165 144 164 140 164 135 Z"></path>
+<!-- Handholding touchpoint bridge -->
+<path d="M151 147 Q154 145 157 147 Q154 148 151 147 Z" stroke="#b5c5f9" stroke-linecap="round" stroke-width="1.2"></path>
+</g>
+<!-- Floating ambient fireflies/stardust near the couple -->
+<circle class="animate-ping" cx="132" cy="122" fill="#b5c5f9" opacity="0.6" r="1"></circle>
+<circle class="animate-pulse" cx="184" cy="128" fill="#d7c2c2" opacity="0.7" r="1.2"></circle>
+<circle class="animate-pulse" cx="154" cy="116" fill="#b5c5f7" opacity="0.9" r="0.8"></circle>
+</svg>
+</div>
+<!-- Poetic Quote Block -->
+<div class="max-w-md mx-auto space-y-4 px-3">
+<blockquote class="font-headline-sm text-headline-sm text-on-surface tracking-wide leading-relaxed">
+        “The Moon is always <span class="text-primary italic">Beautiful</span> even when it changes its shape, and even when there’s a lunar eclipse.”
+      </blockquote>
+<p class="font-body-md text-body-md text-secondary tracking-normal font-light">
+        Because during all this... the Moon is just hidden, never truly disappeared.
+      </p>
+</div>
+<!-- Scroll Down Prompt Indicator -->
+<div class="pt-8 flex flex-col items-center space-y-2 opacity-90 animate-bounce">
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Scroll to unveil our universe</span>
+<span class="material-symbols-outlined text-primary text-body-lg">arrow_downward</span>
+</div>
+</section>
+<!-- ACT 2: ROTATING MOON & MEMORY CONSTELLATIONS -->
+<section class="relative z-10 w-full min-h-screen py-16 px-4 flex flex-col items-center justify-center" id="act-two">
+<!-- Chapter Pill Badge -->
+<div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-container-high/80 backdrop-blur-md mb-4 shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-label-md">orbit</span>
+<span class="font-label-sm text-label-sm text-tertiary tracking-widest uppercase">Orbital Relics // Touch to Rotate</span>
+</div>
+<div class="text-center max-w-sm mb-6 px-2">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Our Gravitational Field</h2>
+<p class="font-body-sm text-body-sm text-secondary mt-1">Tap a floating memory beacon to listen to its starlight frequency.</p>
+</div>
+<!-- Interactive 3D Sphere / Photorealistic Lunar Sphere Container -->
+<div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center touch-none select-none my-6">
+<!-- Radiant Lunar Corona Soft Glows & Shimmer Rings -->
+<div class="absolute -inset-8 rounded-full bg-white/20 blur-3xl pointer-events-none lunar-pulse-ring"></div>
+<div class="absolute inset-0 rounded-full bg-primary/25 blur-2xl pointer-events-none"></div>
+<div class="absolute inset-4 rounded-full bg-white/30 blur-xl pointer-events-none"></div>
+<div class="absolute inset-8 rounded-full border border-white/40 blur-[0.5px] pointer-events-none lunar-pulse-ring opacity-70"></div>
+<!-- Photorealistic 3D Moon Sphere Container with Astronomical Appearance -->
+<div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden cursor-grab active:cursor-grabbing transform transition-transform duration-75 moon-radiant-glow shadow-[0_0_50px_rgba(255,255,255,0.45),0_0_90px_rgba(181,197,249,0.3),inset_0_0_20px_rgba(255,255,255,0.6)]" id="interactive-moon">
+<!-- Seamless Photorealistic 3D Lunar Sphere Image with Clean Rotational Physics -->
+<div class="w-full h-full rounded-full overflow-hidden flex items-center justify-center pointer-events-none" id="lunar-surface" style="transform: rotate(0deg); will-change: transform;">
+<img alt="A pristine, ultra-realistic astronomical photograph of the full moon, perfectly centered, isolated against deep seamless pure cosmic black" class="w-full h-full object-cover rounded-full select-none pointer-events-none filter brightness-105 contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBClqqJBU-NnTfOV5mP_brz4bLDPX6E9lQPt_4rMbQlZeUL7m_67xi5C9mtO1ROKXVNuUAVwW8k5N7UPHAaf8z3s5aNeApso5fthZjepbqf89BomhZNJ790Dh-jw8mEug59dlNA7178vskVBuaON6Al2Z3h61Emi5CWrAvNgy6nYtebvS__Br8QDVeK0ck-ci6thnv_6zkhJlYe4Rxc-4-dgsYswZnjS2xTSrq40Diw"/>
+</div>
+<!-- Spherical Shading 3D Normal & Limb Darkening Overlay -->
+<div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_42%_38%,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0.02)_50%,rgba(10,8,12,0.35)_82%,rgba(8,6,10,0.75)_100%)] pointer-events-none mix-blend-multiply"></div>
+<!-- Atmospheric Starlight Rim Glow and Specular Sheen -->
+<div class="absolute inset-0 rounded-full shadow-[inset_0_0_25px_rgba(255,255,255,0.6),inset_4px_4px_16px_rgba(255,255,255,0.45),inset_-12px_-12px_28px_rgba(15,13,20,0.6)] pointer-events-none"></div>
+<div class="absolute top-2 left-4 w-32 h-24 rounded-full bg-gradient-to-br from-white/25 via-white/5 to-transparent blur-md pointer-events-none transform -rotate-12"></div>
+</div>
+<!-- Floating Constellation Memory Tags Orbiting the Moon -->
+<!-- 1. California burrito -->
+<button class="memory-tag absolute top-2 left-0 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md transform -translate-y-2 hover:scale-105 active:scale-95 transition-all text-left" data-beacon="burrito" data-memory="The late night food truck stop when you stole my fries and smiled that unforgettable midnight smile." data-sound="Glass crystal ping: pure C6 bell with resonant harmonic tail">
+<span class="font-label-sm text-label-sm text-primary flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span>California burrito</span>
+</span>
+</button>
+<!-- 2. Polar bear -->
+<button class="memory-tag absolute top-6 right-0 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="polar" data-memory="Our silly code for cozying up under three layers of fleece duvets in December." data-sound="Quartz chime: luminous E6 glass overtone ping">
+<span class="font-label-sm text-label-sm text-secondary flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Polar bear</span>
+</span>
+</button>
+<!-- 3. Naturals -->
+<button class="memory-tag absolute bottom-8 left-2 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="naturals" data-memory="Tender coconut and malai ice creams in paper cups while walking the quiet summer boulevards." data-sound="Crystal marimba: pure G6 bell tone with celestial resonance">
+<span class="font-label-sm text-label-sm text-tertiary flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>Naturals</span>
+</span>
+</button>
+<!-- 4. Dumbass -->
+<button class="memory-tag absolute bottom-12 right-2 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="dumbass" data-memory="The affectionate whisper right after one of us dropped our keys down the hallway rug again." data-sound="Playful glass pop: crisp transient ping in B6 crystal overtone">
+<span class="font-label-sm text-label-sm text-error flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span>Dumbass</span>
+</span>
+</button>
+<!-- 5. Hrithik Roshan -->
+<button class="memory-tag absolute -top-4 right-16 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="hrithik" data-memory="Your exaggerated attempt to recreate the 'Kaho Naa Pyaar Hai' hook step inside the empty kitchen." data-sound="High crystal strike: sparkling C7 celestial bell resonance">
+<span class="font-label-sm text-label-sm text-primary-fixed flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span>
+<span>Hrithik Roshan</span>
+</span>
+</button>
+<!-- 6. YRC -->
+<button class="memory-tag absolute -bottom-5 left-16 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="yrc" data-memory="The quiet roof ledge where we watched the city dim its headlights and made wishes on passing flights." data-sound="Ether glass ping: D7 crystalline harmonic clink">
+<span class="font-label-sm text-label-sm text-secondary-fixed flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+<span>YRC</span>
+</span>
+</button>
+<!-- 7. BGS -->
+<button class="memory-tag absolute top-28 -left-5 z-20 px-3 py-1 rounded-full bg-surface-container-high/85 backdrop-blur-md shadow-md hover:scale-105 active:scale-95 transition-all text-left" data-beacon="bgs" data-memory="Blue skies, green grass, and secret glances exchanged when nobody else was looking our way." data-sound="Ethereal quartz bell: vibrant E7 crystalline chime">
+<span class="font-label-sm text-label-sm text-primary-container flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-tint"></span>
+<span>BGS</span>
+</span>
+</button>
+</div>
+<!-- Active Memory Preview Display Card (Glassmorphic Modal Bar) -->
+<div class="w-full max-w-sm mt-6 p-4 rounded-xl bg-surface-container-high/90 backdrop-blur-xl shadow-xl transition-all duration-300 relative border border-outline-variant/30" id="memory-display">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center space-x-2 text-primary">
+<span class="material-symbols-outlined text-body-md" id="memory-icon">lens_blur</span>
+<span class="font-label-md text-label-md font-semibold tracking-wider" id="memory-title">Tap any constellation tag above</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-tertiary opacity-0 transition-opacity duration-300" id="memory-starlight-tag">Starlight resonance</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="memory-text">
+        Each memory is a star anchored to our gravitational center. Drag the lunar surface to turn our night sky.
+      </p>
+</div>
+</section>
+<!-- ACT 3: METEOR SHOWER FINALE & THE ETERNAL LOOP -->
+<section class="relative z-10 w-full min-h-screen py-16 px-6 flex flex-col justify-between items-center text-center">
+<!-- Climax Header -->
+<div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-container-low/80 backdrop-blur-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-label-md">flare</span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">The Eternal Acceptance</span>
+</div>
+<!-- Luminous Typography Centerpiece -->
+<div class="my-auto max-w-md space-y-6 relative py-6">
+<div class="absolute inset-0 bg-primary-container/10 blur-3xl -z-10 rounded-full pointer-events-none"></div>
+<!-- Sacred Triple Acceptance Statement -->
+<div class="space-y-4">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold tracking-tight leading-snug">
+          I accept every part of you.
+        </p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-secondary font-semibold tracking-tight leading-snug">
+          I appreciate every part of you.
+        </p>
+<p class="font-headline-xl-mobile text-headline-xl-mobile text-primary font-bold tracking-tight leading-none drop-shadow-[0_0_20px_rgba(181,197,249,0.35)]">
+          Love every part of you.
+        </p>
+</div>
+<div class="w-16 h-0.5 mx-auto bg-primary-container/40 rounded-full my-6"></div>
+<p class="font-body-md text-body-md text-secondary max-w-xs mx-auto font-light leading-relaxed">
+        Through every waxing crest and dormant phase, my soul remains in your orbit. Always and effortlessly.
+      </p>
+</div>
+<!-- Eternal Loop Return Button -->
+<div class="w-full max-w-xs flex flex-col items-center space-y-4 pt-6">
+<button class="w-full flex items-center justify-center space-x-2 py-3 px-6 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-xl hover:opacity-95 active:scale-95 transition-all" id="loop-return-btn" type="button">
+<span class="material-symbols-outlined text-body-md">all_inclusive</span>
+<span>Return to the Beginning ∞</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Our love story has no ending</span>
+</div>
+</section>
+<!-- SECRET MESSAGE BOTTOM DRAWER (POP-UP) -->
+<div class="fixed inset-x-0 bottom-0 z-50 transform translate-y-full transition-transform duration-500 ease-in-out px-4 pb-6 pt-2 max-w-lg mx-auto pointer-events-none" id="secret-drawer">
+<div class="p-6 rounded-2xl bg-surface-container-high/95 backdrop-blur-2xl shadow-2xl space-y-4 pointer-events-auto">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-body-lg">favorite</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Secret Stardust Vault</span>
+</div>
+<button aria-label="Close Drawer" class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:text-on-surface" id="drawer-close" type="button">
+<span class="material-symbols-outlined text-body-md">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        "Whenever the universe feels loud or the path looks dim, remember that we carved our names into these stars. You will always be my safest sanctuary, my wildest laughter, and my favorite constellation."
+      </p>
+<div class="pt-2 flex items-center justify-between text-secondary">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Forever Yours</span>
+<span class="font-label-sm text-label-sm text-outline">Written in the Cosmos</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function() {
+  // Shared Web Audio Context for Celestial Sound Synthesizer
+  let sfxCtx = null;
+  function getAudioContext() {
+    if (!sfxCtx) {
+      sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (sfxCtx.state === 'suspended') {
+      sfxCtx.resume();
+    }
+    return sfxCtx;
+  }
+
+  // igloo.inc Reference Synthesizer Engine: Crisp Glass Pop & Resonant Crystal Bell Chimes
+  // Notes scale for beacons: C6, E6, G6, B6, C7, D7, E7
+  const beaconFrequencies = {
+    burrito: 1046.50, // C6: California burrito
+    polar:   1318.51, // E6: Polar bear
+    naturals:1567.98, // G6: Naturals
+    dumbass: 1975.53, // B6: Dumbass
+    hrithik: 2093.00, // C7: Hrithik Roshan
+    yrc:     2349.32, // D7: YRC
+    bgs:     2637.02  // E7: BGS
+  };
+
+  function playBeaconSound(type) {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    const baseFreq = beaconFrequencies[type] || 1318.51;
+
+    // 1. Transient Crisp Glass Strike (igloo.inc physical glass clink pop)
+    const clickOsc = ctx.createOscillator();
+    const clickGain = ctx.createGain();
+    clickOsc.type = 'sine';
+    clickOsc.frequency.setValueAtTime(baseFreq * 3.2, now);
+    clickOsc.frequency.exponentialRampToValueAtTime(baseFreq * 0.8, now + 0.018);
+
+    clickGain.gain.setValueAtTime(0.35, now);
+    clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.022);
+
+    clickOsc.connect(clickGain);
+    clickGain.connect(ctx.destination);
+    clickOsc.start(now);
+    clickOsc.stop(now + 0.025);
+
+    // Filtered glass click impulse
+    const bufferSize = ctx.sampleRate * 0.008;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+    }
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = buffer;
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.setValueAtTime(4800, now);
+    noiseFilter.Q.setValueAtTime(4.0, now);
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.22, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+
+    noiseSource.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noiseSource.start(now);
+
+    // 2. Crystal Reverb & Resonant Space Bus
+    const delay = ctx.createDelay();
+    delay.delayTime.setValueAtTime(0.14, now);
+    const feedback = ctx.createGain();
+    feedback.gain.setValueAtTime(0.28, now);
+    const delayFilter = ctx.createBiquadFilter();
+    delayFilter.type = 'highpass';
+    delayFilter.frequency.setValueAtTime(1400, now);
+
+    delay.connect(feedback);
+    feedback.connect(delayFilter);
+    delayFilter.connect(delay);
+    delay.connect(ctx.destination);
+
+    // 3. Pristine Pure Sinusoidal Fundamental Bell
+    const fundOsc = ctx.createOscillator();
+    const fundGain = ctx.createGain();
+    fundOsc.type = 'sine';
+    fundOsc.frequency.setValueAtTime(baseFreq, now);
+
+    fundGain.gain.setValueAtTime(0.0001, now);
+    fundGain.gain.linearRampToValueAtTime(0.32, now + 0.004);
+    fundGain.gain.exponentialRampToValueAtTime(0.08, now + 0.35);
+    fundGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.85);
+
+    fundOsc.connect(fundGain);
+    fundGain.connect(ctx.destination);
+    fundGain.connect(delay);
+    fundOsc.start(now);
+    fundOsc.stop(now + 1.9);
+
+    // 4. Characteristic Quartz Glass Overtones (2.76x and 5.4x inharmonic bell modes)
+    const overtoneRatios = [2.756, 5.404];
+    overtoneRatios.forEach((ratio, idx) => {
+      const harmOsc = ctx.createOscillator();
+      const harmGain = ctx.createGain();
+      harmOsc.type = 'sine';
+      harmOsc.frequency.setValueAtTime(baseFreq * ratio, now);
+
+      const amp = idx === 0 ? 0.14 : 0.07;
+      harmGain.gain.setValueAtTime(0.0001, now);
+      harmGain.gain.linearRampToValueAtTime(amp, now + 0.003);
+      harmGain.gain.exponentialRampToValueAtTime(0.0001, now + (idx === 0 ? 0.95 : 0.45));
+
+      harmOsc.connect(harmGain);
+      harmGain.connect(ctx.destination);
+      harmGain.connect(delay);
+
+      harmOsc.start(now);
+      harmOsc.stop(now + 1.1);
+    });
+  }
+
+  // 1. STARFIELD & METEOR SIMULATION CANVAS
+  const canvas = document.getElementById('cosmic-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const stars = Array.from({ length: 85 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.4 + 0.3,
+      alpha: Math.random() * 0.8 + 0.2,
+      delta: (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1)
+    }));
+
+    const meteors = [];
+
+    function spawnMeteor() {
+      if (meteors.length < 3 && Math.random() < 0.04) {
+        meteors.push({
+          x: Math.random() * width * 1.2 - width * 0.1,
+          y: Math.random() * (height * 0.5),
+          len: Math.random() * 90 + 50,
+          speed: Math.random() * 5 + 4,
+          thickness: Math.random() * 1.5 + 0.8,
+          alpha: 1
+        });
+      }
+    }
+
+    function renderCosmicScene() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Render Twinkling Stars
+      for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.alpha += star.delta;
+        if (star.alpha > 0.95 || star.alpha < 0.15) star.delta *= -1;
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.max(0, star.alpha) + ')';
+        ctx.fill();
+      }
+
+      // Render Meteors
+      spawnMeteor();
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.len, m.y + m.len * 0.6);
+        
+        const gradient = ctx.createLinearGradient(m.x, m.y, m.x - m.len, m.y + m.len * 0.6);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, ' + m.alpha + ')');
+        gradient.addColorStop(0.5, 'rgba(181, 197, 249, ' + m.alpha * 0.6 + ')');
+        gradient.addColorStop(1, 'rgba(21, 18, 22, 0)');
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = m.thickness;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        m.x += m.speed;
+        m.y += m.speed * 0.6;
+        m.alpha -= 0.016;
+
+        if (m.alpha <= 0 || m.x > width + 100 || m.y > height + 100) {
+          meteors.splice(i, 1);
+        }
+      }
+
+      requestAnimationFrame(renderCosmicScene);
+    }
+    renderCosmicScene();
+  }
+
+  // 2. INTERACTIVE ROTATING REALISTIC MOON (DRAG, ORBIT & TOUCH PHYSICS)
+  const moonEl = document.getElementById('interactive-moon');
+  const surfaceEl = document.getElementById('lunar-surface');
+  let currentRotation = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let autoRotateSpeed = 0.08;
+
+  function updateMoonRotation(angle) {
+    if (!surfaceEl) return;
+    surfaceEl.style.transform = `rotate(${angle}deg)`;
+  }
+
+  // Gentle passive orbital celestial rotation
+  function passiveOrbitLoop() {
+    if (!isDragging) {
+      currentRotation = (currentRotation + autoRotateSpeed) % 360;
+      updateMoonRotation(currentRotation);
+    }
+    requestAnimationFrame(passiveOrbitLoop);
+  }
+  requestAnimationFrame(passiveOrbitLoop);
+
+  if (moonEl && surfaceEl) {
+    const handleStart = (clientX, clientY) => {
+      isDragging = true;
+      startX = clientX;
+      startY = clientY;
+    };
+
+    const handleMove = (clientX, clientY) => {
+      if (!isDragging) return;
+      const deltaX = clientX - startX;
+      const deltaY = clientY - startY;
+      // Convert angular interaction to smooth continuous 3D rotation
+      currentRotation += (deltaX - deltaY * 0.3) * 0.75;
+      updateMoonRotation(currentRotation);
+      startX = clientX;
+      startY = clientY;
+    };
+
+    const handleEnd = () => {
+      isDragging = false;
+    };
+
+    moonEl.addEventListener('mousedown', (e) => handleStart(e.clientX, e.clientY));
+    window.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
+    window.addEventListener('mouseup', handleEnd);
+
+    moonEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) handleStart(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchend', handleEnd);
+
+    // Subtle realistic continuous planetary rotation on page scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      currentRotation += scrollY * 0.03;
+      updateMoonRotation(currentRotation);
+    }, { passive: true });
+  }
+
+  // 3. CONSTELLATION MEMORY PILL INTERACTIONS & SOUND EFFECTS
+  const tags = document.querySelectorAll('.memory-tag');
+  const displayTitle = document.getElementById('memory-title');
+  const displayText = document.getElementById('memory-text');
+  const displayCard = document.getElementById('memory-display');
+  const starlightTag = document.getElementById('memory-starlight-tag');
+
+  tags.forEach(tag => {
+    tag.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const text = this.getAttribute('data-memory');
+      const soundDesc = this.getAttribute('data-sound') || 'Glass crystal chime';
+      const beaconType = this.getAttribute('data-beacon');
+      const label = this.innerText.trim();
+
+      // Trigger Web Audio Synthesizer Glass Pop & Resonant Chime
+      if (beaconType) {
+        playBeaconSound(beaconType);
+      }
+
+      // Visual Audio-Reactive Feedback: Ripple Halo
+      tags.forEach(t => t.classList.remove('halo-active'));
+      this.classList.add('halo-active');
+      setTimeout(() => this.classList.remove('halo-active'), 800);
+
+      // Card Display Update
+      if (displayTitle && displayText && displayCard) {
+        displayTitle.textContent = label;
+        displayText.textContent = text;
+        if (starlightTag) {
+          starlightTag.textContent = soundDesc;
+          starlightTag.classList.remove('opacity-0');
+        }
+        displayCard.classList.add('scale-105', 'ring-2', 'ring-white/40');
+        setTimeout(() => {
+          displayCard.classList.remove('scale-105', 'ring-2', 'ring-white/40');
+        }, 250);
+      }
+    });
+  });
+
+  // 4. ETERNAL LOOP SMOOTH RETURN
+  const loopBtn = document.getElementById('loop-return-btn');
+  if (loopBtn) {
+    loopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // 5. SECRET MESSAGE DRAWER TOGGLES
+  const drawerToggle = document.getElementById('drawer-toggle');
+  const drawerClose = document.getElementById('drawer-close');
+  const drawer = document.getElementById('secret-drawer');
+
+  if (drawer && drawerToggle && drawerClose) {
+    const toggleDrawer = () => {
+      const isClosed = drawer.classList.contains('translate-y-full');
+      if (isClosed) {
+        drawer.classList.remove('translate-y-full');
+      } else {
+        drawer.classList.add('translate-y-full');
+      }
+    };
+
+    drawerToggle.addEventListener('click', toggleDrawer);
+    drawerClose.addEventListener('click', () => drawer.classList.add('translate-y-full'));
+  }
+
+  // 6. SYNTHETIC COSMIC LOFI AUDIO TONE GENERATOR (WEB AUDIO API)
+  const audioBtn = document.getElementById('audio-toggle');
+  const audioIcon = document.getElementById('audio-icon');
+  let audioCtx = null;
+  let isPlaying = false;
+  let oscillator1 = null;
+  let oscillator2 = null;
+  let gainNode = null;
+
+  if (audioBtn && audioIcon) {
+    audioBtn.addEventListener('click', () => {
+      if (!audioCtx) {
+        audioCtx = getAudioContext();
+      }
+
+      if (!isPlaying) {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+
+        // Low binaural ethereal drone (A2 110Hz and chord tone 164.8Hz)
+        oscillator1 = audioCtx.createOscillator();
+        oscillator1.type = 'sine';
+        oscillator1.frequency.setValueAtTime(110, audioCtx.currentTime);
+
+        oscillator2 = audioCtx.createOscillator();
+        oscillator2.type = 'triangle';
+        oscillator2.frequency.setValueAtTime(164.81, audioCtx.currentTime);
+
+        oscillator1.connect(gainNode);
+        oscillator2.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator1.start();
+        oscillator2.start();
+
+        isPlaying = true;
+        audioIcon.innerText = 'volume_up';
+      } else {
+        if (gainNode) {
+          gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+          setTimeout(() => {
+            if (oscillator1) oscillator1.stop();
+            if (oscillator2) oscillator2.stop();
+          }, 450);
+        }
+        isPlaying = false;
+        audioIcon.innerText = 'graphic_eq';
+      }
+    });
+  }
+})();
+</script></main></body></html>

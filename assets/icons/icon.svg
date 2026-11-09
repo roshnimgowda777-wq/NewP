@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="space-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#221f28"/>
+      <stop offset="70%" stop-color="#151216"/>
+      <stop offset="100%" stop-color="#0a080c"/>
+    </radialGradient>
+    <linearGradient id="crescent-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#e2e9fc"/>
+      <stop offset="100%" stop-color="#b5c5f9"/>
+    </linearGradient>
+    <filter id="bloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Disc -->
+  <circle cx="256" cy="256" r="248" fill="url(#space-bg)" stroke="#6575a4" stroke-opacity="0.3" stroke-width="4"/>
+  <!-- Atmospheric Outer Aura -->
+  <circle cx="256" cy="256" r="160" fill="#6575a4" fill-opacity="0.12" filter="url(#bloom)"/>
+  <!-- Glowing Crescent Moon -->
+  <path d="M280 140 A 120 120 0 1 0 370 340 A 105 105 0 1 1 280 140 Z" fill="url(#crescent-glow)" filter="url(#bloom)"/>
+  <!-- Couple Constellation Stars -->
+  <circle cx="190" cy="230" r="12" fill="#ffffff" filter="url(#bloom)"/>
+  <circle cx="230" cy="270" r="9" fill="#d7c2c2" filter="url(#bloom)"/>
+  <path d="M190 230 Q 210 245 230 270" stroke="#b5c5f9" stroke-width="2.5" stroke-dasharray="4,4" stroke-opacity="0.7"/>
+</svg>
+

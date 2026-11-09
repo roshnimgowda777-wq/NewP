@@ -1,0 +1,21 @@
+{
+  "name": "celestial-love-journey",
+  "version": "1.0.0",
+  "description": "Celestial Love Journey - An intimate mobile app experience with 3D lunar physics, starlight synthesizer, and cosmic memories.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "mobile-app",
+    "astronomy",
+    "celestial",
+    "web-audio-api",
+    "pwa"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
